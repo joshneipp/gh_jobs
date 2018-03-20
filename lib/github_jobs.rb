@@ -1,7 +1,9 @@
+require 'rubygems'
+require 'bundler/setup'
+require 'httparty'
+
 require File.expand_path(File.dirname(__FILE__) + '/version')
 require File.expand_path(File.dirname(__FILE__) + '/config')
-
-require 'httparty'
 
 module GitHubJobs
   class Base
