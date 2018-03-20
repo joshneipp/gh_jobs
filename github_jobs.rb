@@ -9,16 +9,20 @@ module GitHubJobs
 
   class Request < Base
 
-    def by_location(location)
+    def by_location(args = {})
+      location = args.fetch(:location, "ny")
       self.class.get("?location=#{location}")
     end
 
-    def by_keyword(keyword)
+    def by_keyword(args = {})
+      keyword = args.fetch(:keyword, "ruby")
       self.class.get("?description=#{keyword}")
     end
 
-    def by_location_and_keyword
-
+    def by_location_and_keyword(args = {})
+      location = args.fetch(:location, "ny")
+      keyword = args.fetch(:keyword, "ruby")
+      self.class.get("?description=#{keyword}&location=#{location}")
     end
 
   end
