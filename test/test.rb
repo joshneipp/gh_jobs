@@ -1,5 +1,5 @@
-require File.expand_path(File.dirname(__FILE__) + '../../../lib/github_jobs')
-require File.expand_path(File.dirname(__FILE__) + '/test_helper')
+require_relative 'test_helper'
+require_relative '../lib/github_jobs'
 
 class GitHubJobsTest < Minitest::Test
   include TestHelper
