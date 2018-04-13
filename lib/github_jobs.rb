@@ -6,6 +6,7 @@ require File.expand_path(File.dirname(__FILE__) + '/version')
 require File.expand_path(File.dirname(__FILE__) + '/config')
 
 module GitHubJobs
+
   class Base
     include HTTParty
     base_uri 'jobs.github.com/positions.json'
@@ -22,6 +23,12 @@ module GitHubJobs
       # use the default location if no location given
       location = args.fetch(:location, GitHubJobs::Config::DEFAULT_LOCATION)
       self.class.get("?location=#{location}")
+    end
+
+    def search_by_location_and_keyword(**args)
+      location = args.fetch(:location, GitHubJobs::Config::DEFAULT_LOCATION)
+      keyword = args.fetch(:keyword, GitHubJobs::Config::DEFAULT_LANGUAGE)
+      self.class.get("?description=#{keyword}&location=#{location}")
     end
   end
 
@@ -56,7 +63,7 @@ module GitHubJobs
       summary = Hash.new
 
       GitHubJobs::Config::DEFAULT_LOCATIONS.each do |loc|
-        jobs_total = Request.new.by_location(location: loc).count
+        jobs_total = Client.new.search_by_location(location: loc).count
           summary[loc] = {}
 
           GitHubJobs::Config::DEFAULT_LANGUAGES.each do |lang|
