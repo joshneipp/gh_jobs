@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'bundler/setup'
+# require 'bundler/setup'
 require 'httparty'
 
 require File.expand_path(File.dirname(__FILE__) + '/version')
@@ -40,7 +40,7 @@ module GitHubJobs
   class Summary < Request
     def generate_for_defaults
       summary = Hash.new
-      
+
       GitHubJobs::Config::DEFAULT_LOCATIONS.each do |loc|
         jobs_total = Request.new.by_location(location: loc).count
           summary[loc] = {}

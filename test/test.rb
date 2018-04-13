@@ -55,4 +55,13 @@ class GitHubJobsTest < Minitest::Test
     assert_equal true, parsed_response.all? { |job| /1\-3/.match(job['description']) },
       'all response descriptions should include "1-3" years of experience'
   end
+
+  def test_client
+    client = GitHubJobs::Client.new
+    response = client.search_by_location(location: 'ny')
+    assert_equal 200, response.code
+
+    # parsed_response = JSON.parse(response.body)
+    # assert_match 'York', parsed_response[0]['location']
+  end
 end
