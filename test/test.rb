@@ -57,11 +57,16 @@ class GitHubJobsTest < Minitest::Test
   end
 
   def test_client
+    stub_request_for('location=ny')
     client = GitHubJobs::Client.new
     response = client.search_by_location(location: 'ny')
     assert_equal 200, response.code
 
-    # parsed_response = JSON.parse(response.body)
-    # assert_match 'York', parsed_response[0]['location']
+    parsed_response = JSON.parse(response.body)
+    assert_match 'York', parsed_response[0]['location']
+  end
+
+  def test_client_base_uri
+    assert_equal 'http://jobs.github.com/positions.json', GitHubJobs::Client.base_uri
   end
 end

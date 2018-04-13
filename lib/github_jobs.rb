@@ -11,6 +11,20 @@ module GitHubJobs
     base_uri 'jobs.github.com/positions.json'
   end
 
+  class Client
+    include HTTParty
+    base_uri 'http://jobs.github.com/positions.json'
+
+    def initialize
+    end
+
+    def search_by_location(**args)
+      # use the default location if no location given
+      location = args.fetch(:location, GitHubJobs::Config::DEFAULT_LOCATION)
+      self.class.get("?location=#{location}")
+    end
+  end
+
   class Request < Base
 
     def by_location(**args)

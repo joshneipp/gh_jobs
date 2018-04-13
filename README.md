@@ -36,36 +36,6 @@ Tests are written with [minitest](https://github.com/seattlerb/minitest), with s
 
 * The Summary class is not well tested on its own, only through the unit tests of its dependent methods. A better integration suite would be desirable.
 
-#### Challenges
-
-* Stubbing data for tests was fun/weird because I had not used this particular mocking library before. I screwed up quite a few tries before getting it right.
-
-* I moved bits of my code around quite a bit and broke expected file paths now and then. In the end I realized it would have probably been more appropriate to generate a Gem-like file structure from the beginning and build code inside of that, but I wanted to deal with something a bit more compact from the beginning.
-
-* I borked the hash-loop construction in the Summary class quite a bit toward the end -- I don't know why XD. After a bit I just started over and it worked fine.
-
-#### Areas of the code I am proud of
-
-* The tests are not perfect but I really enjoyed writing them. Getting the mocks in place with only a little time felt good.
-
-* I felt pretty good about the overall structure of the classes and methods. I'm sure looking back on it in a week or two I'll scratch my head and wonder why, but for now, it felt pretty right.
-
-* Any day I get to use the double splat operator is a good day.
-
-#### Areas of the code I am least proud of
-
-* I feel like there's a good bit of general OO refactor that needs done.
-
-* A more robust set of tests is needed, for sure.
-
-* I would have like to package this up as a rubygem for easier reuse.
-
-* In the end it was a bit anticlimatic because of how few job search results there were for each location and language.
-
-#### Tradeoffs
-
-* Time was the biggest factor for me, so I felt rushed with every design decision. I'm sure with more experience, those decisions will come a lot more quickly and naturally. Toward the end, I felt like I was cutting corners and being a bit sloppy in my code.
-
 #### Example JSON output
 
 ```
